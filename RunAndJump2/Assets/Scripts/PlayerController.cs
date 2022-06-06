@@ -1,4 +1,17 @@
-public class PlayerController : MonoBehavior{
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using System.Collections;
+using System.Collections.Generic;
+
+
+
+public enum CharacterState {
+    IDLE,
+    RUNNING,
+    JUMPING,
+    DEAD
+}
+public class PlayerController : MonoBehaviour {
     public CharacterState mPlayerState = CharacterState.IDLE;
 
     [Header("Movement Settings")]
