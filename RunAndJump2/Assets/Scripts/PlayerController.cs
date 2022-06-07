@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Movement Settings")]
     public float mSpeed = 5.0f;
-    public float mJumpStrength = 10.0f;
+    public float mJumpStrength = 60.0f;
 
     // Setting the animated sprites for the different states
     [Header("State Sprites")]
@@ -40,6 +40,21 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
 
+    //     moveHorizontal = Input.GetAxisRaw("Horizontal");
+    //     moveVertical = Input.GetAxisRaw("Vertical");
+    // }
+
+    // void FixedUpdate(){
+    //     if(moveHorizontal > 0.1f || moveHorizontal < -0.1f){
+    //         rb2D.AddForce(New Vector2(moveHorizontal * mSpeed, 0f), ForceMode2D.Impulse);
+    //     }
+
+    //     if(moveVertical > 0.1f){
+    //         rb2D.AddForce(New Vector2(0f, moveVertical * mjumpStrength), ForceMode2D.Impulse);
+    //     }
+    // }
+
+
         _bPlayerStateChanged = false;
         // check state changes
         if (mPlayerState == CharacterState.IDLE)
@@ -57,7 +72,7 @@ public class PlayerController : MonoBehaviour {
                     _bIsGoingRight = false;
                 }
             }
-            else if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.UpArrow))
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * mJumpStrength;
                 _bPlayerStateChanged = true;
@@ -95,6 +110,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
     }
+    
 
     IEnumerator CheckGrounded()
     {
@@ -105,7 +121,7 @@ public class PlayerController : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(transform.position - Vector3.up * 1f, -Vector2.up, 0.05f);
             if (hit.collider != null)
             {
-                if (hit.transform.tag == "Terrain")
+                if (hit.transform.tag == "Tilemap")
                 {
                     if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
                     {
