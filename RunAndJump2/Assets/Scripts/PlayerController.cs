@@ -56,6 +56,13 @@ public class PlayerController : MonoBehaviour
             // check state changes
             if (mPlayerState == CharacterState.IDLE)
             {
+
+                // if(Collectables.hasGun1 && Input.GetKey(KeyCode.Space)){
+                
+                // }
+
+
+
                 if (Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.LeftArrow)))
                 {
                     _bPlayerStateChanged = true;
