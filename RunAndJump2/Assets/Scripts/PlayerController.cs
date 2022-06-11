@@ -17,9 +17,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float mSpeed = 5.0f;
-    public float mJumpStrength = 7.5f;
+    public float mJumpStrength = 7f;
 
-    
+    [Header("Weaponry")]
+    public Transform firePoint;
+    public GameObject bulletPrefab;
+    public bool hasGun1 = false;
 
     [Header("State Sprites")]
     public RuntimeAnimatorController mIdleController;
@@ -35,8 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _bPlayerInvincible = false;
 
-
-
+    
 
     void Start()
     {
@@ -49,20 +51,21 @@ public class PlayerController : MonoBehaviour
     // Use state machine, much better
     void Update()
     {
+
+        
+
         if (!_bInputsDisabled)
         {
+            if (Input.GetKeyDown(KeyCode.Space) && hasGun1) {
+                Shoot();
+            }   
 
             _bPlayerStateChanged = false;
             // check state changes
             if (mPlayerState == CharacterState.IDLE)
             {
 
-                // if(Collectables.hasGun1 && Input.GetKey(KeyCode.Space)){
-                
-                // }
-
-
-
+               
                 if (Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.LeftArrow)))
                 {
                     _bPlayerStateChanged = true;
@@ -128,6 +131,8 @@ public class PlayerController : MonoBehaviour
         CheckWall();
     }
 
+        
+
     public void ChangeAnimator()
     {
         RuntimeAnimatorController newAnimator = mIdleController;
@@ -186,6 +191,8 @@ public class PlayerController : MonoBehaviour
     /// <param name="other">The Collision2D data associated with this collision.</param>
     void OnCollisionEnter2D(Collision2D other)
     {
+        
+        
         if (other.transform.tag == "Monster" && !_bPlayerInvincible)
         {
             Vector3 heading = other.transform.position - transform.position;
@@ -222,6 +229,18 @@ public class PlayerController : MonoBehaviour
     public void SetStatePlayerInvincible(bool newState)
     {
         _bPlayerInvincible = newState;
+    }
+
+    void OnTriggerEnter2D(Collider2D c2d)
+    {
+        if (c2d.CompareTag("Slimeball"))
+        {
+            hasGun1 = true;
+        }
+    }
+
+    void Shoot(){
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     public void CheckWall() {

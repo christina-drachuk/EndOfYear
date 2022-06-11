@@ -21,14 +21,14 @@ public class ScoreUpdater: MonoBehaviour
     void OnTriggerEnter2D(Collider2D c2d)
     {
         //Destroy the coin if Object tagged Player comes in contact with it
-        if (c2d.CompareTag("Player"))
-        {
-
+        if (c2d.CompareTag("Player")){
             totalCoins++;
             Debug.Log("You currently have " + totalCoins + " Coins.");
             Destroy(gameObject);
         }
+
     }
+    
 
     // Update is called once per frame
     void Update()

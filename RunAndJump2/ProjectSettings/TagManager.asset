@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Coin
   - Slimeball
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
