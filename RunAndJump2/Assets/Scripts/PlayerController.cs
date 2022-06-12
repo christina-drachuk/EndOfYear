@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public enum CharacterState
 {
@@ -29,6 +30,10 @@ public class PlayerController : MonoBehaviour
     public RuntimeAnimatorController mRunningController;
     public RuntimeAnimatorController mJumpingController;
 
+    [Header("Score")]
+    public TMP_Text coinScore;
+    int totalCoins = 0;
+    
 
     private Animator _mAnimatorComponent;
     private bool _bIsGoingRight = true;
@@ -52,7 +57,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        
+       coinScore.SetText("Coins: " + totalCoins);
+    
 
         if (!_bInputsDisabled)
         {
@@ -236,6 +242,10 @@ public class PlayerController : MonoBehaviour
         if (c2d.CompareTag("Slimeball"))
         {
             hasGun1 = true;
+        }
+
+        if(c2d.CompareTag("Coin")){
+            totalCoins++;
         }
     }
 
