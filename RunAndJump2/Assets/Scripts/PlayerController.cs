@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour
     {
         Time.timeScale = 0f;
         menuPanel.SetActive(true);
+
+        if(SceneManager.GetActiveScene().name == "bosslvl"){
+            Time.timeScale = 1f;
+        }
         
         _mAnimatorComponent = gameObject.GetComponent<Animator>();
         _mAnimatorComponent.runtimeAnimatorController = mIdleController;
@@ -292,6 +296,7 @@ public class PlayerController : MonoBehaviour
 
         if(c2d.CompareTag("LevelChanger")){
             SceneManager.LoadScene("bosslvl");
+
             
         }
     }
