@@ -289,6 +289,11 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0f;
             
         }
+
+        if(c2d.CompareTag("LevelChanger")){
+            SceneManager.LoadScene("bosslvl");
+            
+        }
     }
 
     void Shoot(){

@@ -9,6 +9,7 @@ TagManager:
   - Slimeball
   - Enemy
   - Bullet
+  - LevelChanger
   layers:
   - Default
   - TransparentFX
