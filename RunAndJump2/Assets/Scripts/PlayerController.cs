@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum CharacterState
 {
@@ -33,7 +34,15 @@ public class PlayerController : MonoBehaviour
     [Header("Score")]
     public TMP_Text coinScore;
     int totalCoins = 0;
-    
+
+    [SerializeField]
+    public Sprite ogSprite;
+    public Sprite newSprite;
+
+    [SerializeField]
+    public GameObject menuPanel;
+    public GameObject restartPanel;
+
 
     private Animator _mAnimatorComponent;
     private bool _bIsGoingRight = true;
@@ -43,13 +52,18 @@ public class PlayerController : MonoBehaviour
 
     private bool _bPlayerInvincible = false;
 
+    private SpriteRenderer _mspriteRenderer;
+
     
 
     void Start()
     {
+        Time.timeScale = 0f;
+        menuPanel.SetActive(true);
+        
         _mAnimatorComponent = gameObject.GetComponent<Animator>();
         _mAnimatorComponent.runtimeAnimatorController = mIdleController;
-
+        _mspriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
     }
 
@@ -87,6 +101,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Input.GetKey(KeyCode.UpArrow))
                 {
+                    ChangeSprite();
                     gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * mJumpStrength;
                     _bPlayerStateChanged = true;
                     mPlayerState = CharacterState.JUMPING;
@@ -97,6 +112,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
+                    ChangeSprite();
                     gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * mJumpStrength;
                     _bPlayerStateChanged = true;
                     mPlayerState = CharacterState.JUMPING;
@@ -137,8 +153,12 @@ public class PlayerController : MonoBehaviour
         CheckWall();
     }
 
-        
 
+    void ChangeSprite()
+    {
+        _mspriteRenderer.sprite = newSprite; 
+    }
+        
     public void ChangeAnimator()
     {
         RuntimeAnimatorController newAnimator = mIdleController;
@@ -185,7 +205,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
 
         }
-
+        _mspriteRenderer.sprite = ogSprite;
         ChangeAnimator();
         yield return null;
     }
@@ -227,6 +247,22 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
+    public void playButton(){
+        menuPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void restartButton(){
+        restartPanel.SetActive(false);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void quitButton(){
+        Debug.Log("Quit button pressed");
+        Application.Quit();
+    }
+
     public void BlockPlayerInputs()
     {
         _bInputsDisabled = true;
@@ -246,6 +282,12 @@ public class PlayerController : MonoBehaviour
 
         if(c2d.CompareTag("Coin")){
             totalCoins++;
+        }
+
+        if(c2d.CompareTag("Enemy")){
+            restartPanel.SetActive(true);
+            Time.timeScale = 0f;
+            
         }
     }
 
