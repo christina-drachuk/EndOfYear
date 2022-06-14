@@ -60,8 +60,10 @@ public class PlayerController : MonoBehaviour
     {
         Time.timeScale = 0f;
         menuPanel.SetActive(true);
+        // totalCoins = 0;
 
-        if(SceneManager.GetActiveScene().name == "bosslvl"){
+        if(SceneManager.GetActiveScene().name == "bosslvl" || SceneManager.GetActiveScene().name == "lvl2"){
+            totalCoins = 0;
             Time.timeScale = 1f;
         }
         
@@ -74,7 +76,6 @@ public class PlayerController : MonoBehaviour
     // Use state machine, much better
     void Update()
     {
-
        coinScore.SetText("Coins: " + totalCoins);
     
 
