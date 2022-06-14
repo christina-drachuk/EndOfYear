@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
     public GameObject menuPanel;
     public GameObject restartPanel;
 
+    [SerializeField]
+    public Transform CannonfirePoint;
+    public GameObject CannonballPrefab;
+
 
     private Animator _mAnimatorComponent;
     private bool _bIsGoingRight = true;
@@ -54,15 +58,22 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer _mspriteRenderer;
 
+    public int bossHitCount = 0;
+
     
 
     void Start()
     {
         Time.timeScale = 0f;
         menuPanel.SetActive(true);
+        restartPanel.SetActive(false);
+
 
         if(SceneManager.GetActiveScene().name == "bosslvl"){
+            restartPanel.SetActive(false);
             Time.timeScale = 1f;
+            
+
         }
         
         _mAnimatorComponent = gameObject.GetComponent<Animator>();
@@ -76,6 +87,12 @@ public class PlayerController : MonoBehaviour
     {
 
        coinScore.SetText("Coins: " + totalCoins);
+
+       if(bossHitCount >10)
+       {
+        restartPanel.SetActive(true);
+        Time.timeScale = 0f;
+       }
     
 
         if (!_bInputsDisabled)
@@ -282,6 +299,7 @@ public class PlayerController : MonoBehaviour
         if (c2d.CompareTag("Slimeball"))
         {
             hasGun1 = true;
+            restartPanel.SetActive(false);
         }
 
         if(c2d.CompareTag("Coin")){
@@ -296,9 +314,17 @@ public class PlayerController : MonoBehaviour
 
         if(c2d.CompareTag("LevelChanger")){
             SceneManager.LoadScene("bosslvl");
-
-            
         }
+
+        if(c2d.CompareTag("SnakeAttack")){
+            bossHitCount++;
+        }
+
+        if(c2d.CompareTag("Cannonball")){
+            bossHitCount += 5;
+        }
+
+        
     }
 
     void Shoot(){

@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - Bullet
   - LevelChanger
+  - SnakeAttack
+  - Cannon
+  - Cannonball
   layers:
   - Default
   - TransparentFX
@@ -46,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Boss Bullets
+    uniqueID: 1944686377
     locked: 0
