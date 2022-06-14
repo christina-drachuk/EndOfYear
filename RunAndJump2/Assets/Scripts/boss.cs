@@ -10,6 +10,7 @@ public class boss : MonoBehaviour
     public float speed = 1f;
     public bool moveRight = true;
     public float timePass;
+    public int bossHp = 125;
 
     void Start()
     {
@@ -20,6 +21,10 @@ public class boss : MonoBehaviour
 
     public void Update()
     {
+        if(bossHp <= 0){
+            
+        }
+
         if (moveRight) {
             if (transform.position.x <= rightLimit) {
                 transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
@@ -43,4 +48,15 @@ public class boss : MonoBehaviour
         }
 
     }
+
+    void OnTriggerEnter2D(Collider2D c2d)
+    {
+        if (c2d.CompareTag("Bullet"))
+        {
+            bossHp--;
+        }
+
+    }
+
+
 }

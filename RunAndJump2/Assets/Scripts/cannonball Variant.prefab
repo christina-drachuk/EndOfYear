@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6655407732924626540
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1298835
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2268791
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7203708
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.69358915
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118701803362073745, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -272.16998
+      objectReference: {fileID: 0}
+    - target: {fileID: 2933269741481663502, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3038486962210961067, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_GravityScale
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6041270875624123757, guid: 5c0ff59411b37194baada4511684b203, type: 3}
+      propertyPath: m_Name
+      value: cannonball Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5c0ff59411b37194baada4511684b203, type: 3}

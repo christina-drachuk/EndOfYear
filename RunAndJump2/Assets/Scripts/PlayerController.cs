@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
     public GameObject menuPanel;
     public GameObject restartPanel;
 
+    [SerializeField]
+    public Transform CannonfirePoint;
+    public GameObject CannonballPrefab;
+
 
     private Animator _mAnimatorComponent;
     private bool _bIsGoingRight = true;
@@ -53,6 +57,8 @@ public class PlayerController : MonoBehaviour
     private bool _bPlayerInvincible = false;
 
     private SpriteRenderer _mspriteRenderer;
+
+    public int bossHitCount = 0;
 
     
 
@@ -65,6 +71,8 @@ public class PlayerController : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "bosslvl" || SceneManager.GetActiveScene().name == "lvl2"){
             totalCoins = 0;
             Time.timeScale = 1f;
+            
+
         }
         
         _mAnimatorComponent = gameObject.GetComponent<Animator>();
@@ -76,8 +84,13 @@ public class PlayerController : MonoBehaviour
     // Use state machine, much better
     void Update()
     {
-    //    coinScore.SetText("Coins: " + totalCoins);
-    coinScore.text = "Coins: " + totalCoins;
+       coinScore.SetText("Coins: " + totalCoins);
+
+       if(bossHitCount >10)
+       {
+        restartPanel.SetActive(true);
+        Time.timeScale = 0f;
+       }
     
 
         if (!_bInputsDisabled)
@@ -284,6 +297,7 @@ public class PlayerController : MonoBehaviour
         if (c2d.CompareTag("Slimeball"))
         {
             hasGun1 = true;
+            restartPanel.SetActive(false);
         }
 
         if(c2d.CompareTag("Coin")){
@@ -301,14 +315,24 @@ public class PlayerController : MonoBehaviour
 
         if(c2d.CompareTag("LevelChanger") && SceneManager.GetActiveScene().name == "lvl2"){
             SceneManager.LoadScene("bosslvl");  
+        
+
+        if(c2d.CompareTag("SnakeAttack")){
+            bossHitCount++;
         }
+
+        if(c2d.CompareTag("Cannonball")){
+            bossHitCount += 5;
+        }
+
+        
     }
 
     void Shoot(){
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
-    public void CheckWall() {
+    void CheckWall() {
         List<float> directions = new List<float>{-1, 1};
 
         for (int i = 0; i < directions.Count; i++) {
@@ -323,4 +347,4 @@ public class PlayerController : MonoBehaviour
             
     }
 
-}
+    }}
