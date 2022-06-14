@@ -76,7 +76,8 @@ public class PlayerController : MonoBehaviour
     // Use state machine, much better
     void Update()
     {
-       coinScore.SetText("Coins: " + totalCoins);
+    //    coinScore.SetText("Coins: " + totalCoins);
+    coinScore.text = "Coins: " + totalCoins;
     
 
         if (!_bInputsDisabled)
@@ -292,13 +293,14 @@ public class PlayerController : MonoBehaviour
         if(c2d.CompareTag("Enemy")){
             restartPanel.SetActive(true);
             Time.timeScale = 0f;
-            
         }
 
-        if(c2d.CompareTag("LevelChanger")){
-            SceneManager.LoadScene("bosslvl");
+        if(c2d.CompareTag("LevelChanger") && SceneManager.GetActiveScene().name == "SampleScene"){
+                    SceneManager.LoadScene("lvl2");
+        }
 
-            
+        if(c2d.CompareTag("LevelChanger") && SceneManager.GetActiveScene().name == "lvl2"){
+            SceneManager.LoadScene("bosslvl");  
         }
     }
 

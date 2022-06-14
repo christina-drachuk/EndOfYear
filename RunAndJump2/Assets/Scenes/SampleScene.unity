@@ -14874,6 +14874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: restartPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 551233156345195111, guid: b517a541a72a6cd43b42db3fb84f83ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 551233157431732973, guid: b517a541a72a6cd43b42db3fb84f83ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
