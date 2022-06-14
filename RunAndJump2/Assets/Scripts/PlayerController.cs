@@ -234,6 +234,26 @@ public class PlayerController : MonoBehaviour
     /// collider (2D physics only).
     /// </summary>
     /// <param name="other">The Collision2D data associated with this collision.</param>
+    void Shoot(){
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    void CheckWall() {
+
+        List<float> directions = new List<float>{-1, 1};
+
+        for (int i = 0; i < directions.Count; i++) {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right * directions[i], transform.right * directions[i], 0.05f);
+            if (hit.collider != null)
+            {
+                if (hit.transform.tag == "Terrain") {
+                    transform.Translate(-1f * transform.right * directions[i] * 0.025f);
+                }
+            }
+        }
+            
+    }
+    
     void OnCollisionEnter2D(Collision2D other)
     {
         
@@ -307,12 +327,15 @@ public class PlayerController : MonoBehaviour
         if(c2d.CompareTag("Enemy")){
             restartPanel.SetActive(true);
             Time.timeScale = 0f;
-            
         }
 
-        if(c2d.CompareTag("LevelChanger")){
-            SceneManager.LoadScene("bosslvl");
+        if(c2d.CompareTag("LevelChanger") && SceneManager.GetActiveScene().name == "SampleScene"){
+                    SceneManager.LoadScene("lvl2");
         }
+
+        if(c2d.CompareTag("LevelChanger") && SceneManager.GetActiveScene().name == "lvl2"){
+            SceneManager.LoadScene("bosslvl");  
+        
 
         if(c2d.CompareTag("SnakeAttack")){
             bossHitCount++;
@@ -325,23 +348,5 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void Shoot(){
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
-
-    public void CheckWall() {
-        List<float> directions = new List<float>{-1, 1};
-
-        for (int i = 0; i < directions.Count; i++) {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right * directions[i], transform.right * directions[i], 0.05f);
-            if (hit.collider != null)
-            {
-                if (hit.transform.tag == "Terrain") {
-                    transform.Translate(-1f * transform.right * directions[i] * 0.025f);
-                }
-            }
-        }
-            
-    }
-
 }
